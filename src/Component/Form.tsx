@@ -14,7 +14,7 @@ function Form() {
     formState: { errors, isLoading, isSubmitting },
   } = useForm<InputForm>();
   return (
-    <div className="w-1/3 mx-auto mt-10 shadow-lg rounded-3xl">
+    <div className=" sm:w-10/12 md:w-2/5 lg:w-1/4 mx-auto mt-10 shadow-lg rounded-3xl">
       <h1 className="text-center text-2xl">Contact us</h1>
       <form className="p-2.5 w-5/6 m-auto" onSubmit={handleSubmit(onsubmit)}>
         <div className="w-full">
@@ -63,9 +63,7 @@ function Form() {
             <p className="text-red-500 text-end">Enter the Text</p>
           )}
         </div>
-        <button
-          className="block mx-auto mt-4 p-2.5 bg-black text-white rounded-2xl cursor-pointer"
-        >
+        <button className="block mx-auto mt-4 p-2.5 bg-black text-white rounded-2xl cursor-pointer">
           Submit
         </button>
       </form>

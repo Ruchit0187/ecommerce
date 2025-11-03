@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+
 function Home() {
   const nevigate = useNavigate();
 
@@ -7,6 +8,7 @@ function Home() {
     nevigate("/shopping");
   }
   return (
+    <>
     <div className="w-full h-full">
       <div className="absolute left-1/3 text-center top-1/2 translate-x-3.5 p-10 bg-white rounded-2xl">
         <h2 className="text-2xl">Welcome To shopping</h2>
@@ -18,6 +20,7 @@ function Home() {
         </button>
       </div>
     </div>
+    </>
   );
 }
 

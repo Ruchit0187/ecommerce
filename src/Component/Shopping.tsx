@@ -6,7 +6,6 @@ function Shopping() {
     queryKey: ["products"],
     queryFn: () => ApiResponse("/products"),
     gcTime: 300000,
-    staleTime:300000
   });
   return <Card data={data} isLoading={isLoading} isError={isError} />;
 }

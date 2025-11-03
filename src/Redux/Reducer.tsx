@@ -14,24 +14,34 @@ const Cartreducer = createSlice({
   initialState,
   reducers: {
     addTocart(state, action: PayloadAction<QuantityApidata>) {
-      const item=state.task.find((curr)=>curr.id===action.payload.id);
-      if(item){
-        item.quantity+=1
-      }
-      else{
-      state.task.push({...action.payload,quantity:1})
+      const item = state.task.find((curr) => curr.id === action.payload.id);
+      if (item) {
+        item.quantity += 1;
+      } else {
+        state.task.push({ ...action.payload, quantity: 1 });
       }
     },
     removeToCart(state, action: PayloadAction<number>) {
       state.task = state.task.filter((curr) => curr.id !== action.payload);
     },
-
+    removeQuantity(state, action: PayloadAction<QuantityApidata>) {
+      const item = state.task.find((curr) => curr.id === action.payload.id);
+      if (item) {
+        if (item.quantity > 1) {
+          item.quantity -= 1;
+        } else if (item.quantity === 1) {
+          state.task = state.task.filter(
+            (curr) => curr.id !== action.payload.id
+          );
+        }
+      }
+    },
     clearToCart(state) {
       state.task = [];
     },
   },
 });
 
-export const { addTocart, removeToCart, clearToCart } =
+export const { addTocart, removeToCart, clearToCart, removeQuantity } =
   Cartreducer.actions;
 export const CartReducer = Cartreducer.reducer;
