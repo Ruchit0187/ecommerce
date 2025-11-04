@@ -2,12 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "./EmptyCart";
 import type { QuantityApidata } from "../Types/Types";
 import Button from "./Button";
-import { removeToCart } from "../Redux/Reducer";
 import Billing from "./Billing";
+import Confomation from "./Confomation";
 
 function Cart() {
   const dataItem: QuantityApidata[] = useSelector((state: any) => state.task);
-  const dispatch = useDispatch();
   if (dataItem.length === 0) {
     return <EmptyCart />;
   } else {
@@ -21,7 +20,7 @@ function Cart() {
                   <div className="md:flex">
                     <div className="md:shrink-0">
                       <img
-                        className="h-48 w-full object-cover md:h-full md:w-48"
+                        className="h-48 w-full object-contain md:h-full md:w-48"
                         src={curr.images[0]}
                       />
                     </div>
@@ -35,33 +34,30 @@ function Cart() {
                         {(
                           curr.price -
                           (curr.discountPercentage * curr.price) / 100
-                        ).toFixed()}
-                        <p>
-                          Total Price:
-                          {(
-                            (curr.price -
-                              (curr.discountPercentage * curr.price) / 100) *
-                            curr.quantity
-                          ).toFixed()}
-                        </p>
+                        ).toFixed(2)}
+                      </p>
+                      <p>
+                        Total Price:
+                        {(
+                          (curr.price -
+                            (curr.discountPercentage * curr.price) / 100) *
+                          curr.quantity
+                        ).toFixed(2)}
                       </p>
                     </div>
                   </div>
                   <div className=" flex justify-center gap-2">
                     <Button value={curr} />
-                    <button
-                      onClick={() => dispatch(removeToCart(curr.id))}
-                      className=" bg-black text-white px-2 rounded mb-2.5"
-                    >
-                      Remove
-                    </button>
+                    <Confomation id={curr.id} />
                   </div>
                 </div>
               </li>
             ))}
           </ul>
         </div>
-        <div className="w-2/4 fixed right-0"><Billing/></div>
+        <div className="w-2/4 fixed right-0">
+          <Billing />
+        </div>
       </div>
     );
   }

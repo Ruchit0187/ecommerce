@@ -17,7 +17,6 @@ function Indivisual() {
   const { data, isLoading } = apiIdData;
   const indivisualData: ApidataType = data;
   if (isLoading) {
-    console.log(isLoading);
     return (
       <div className=" shadow-sm p-5 bg-blue-100 flex flex-row mx-3 rounded-3xl mt-2.5  justify-between gap-3.5 ">
         <div className="w-1/3">

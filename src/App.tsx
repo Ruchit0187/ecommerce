@@ -8,17 +8,18 @@ import Cart from "./Component/Cart";
 import Indivisual from "./Component/Indivisual";
 
 
+
 function App() {
   return (
     <>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shopping" element={<Shopping />} />
+          <Route path="/shopping" element={<Shopping />}/>
           <Route path="/form" element={<Form />} />
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/shopping/:id" element={<Indivisual />} />
+          <Route path="/shopping/:id" element={<Indivisual/>}/>
         </Routes>
     </>
   );
