@@ -32,21 +32,24 @@ function Confomation(props: any) {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        className="w-full h-full"
       >
-        <DialogTitle id="alert-dialog-title">Do you Really Remove?</DialogTitle>
+        <DialogTitle id="alert-dialog-title" className="w-full">
+          Do you Really Remove?
+        </DialogTitle>
         <DialogActions>
           <button
             onClick={handleClose}
             className="text-black p-2 cursor-pointer"
           >
-            Disagree
+            No
           </button>
           <button
             onClick={handleClose}
             autoFocus
-            className="text-black p-2 cursor-pointer"
+            className="text-red-500 p-2 cursor-pointer"
           >
-            Agree
+            Yes
           </button>
         </DialogActions>
       </Dialog>

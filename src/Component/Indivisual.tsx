@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { ApiIdResponse } from "../Axios/Axios";
+import { apiIdResponse } from "../Axios/Axios";
 import type { ApidataType } from "../Types/Types";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -12,7 +12,7 @@ function Indivisual() {
   const nevigate = useNavigate();
   const apiIdData = useQuery({
     queryKey: ["indivisual", id],
-    queryFn: () => ApiIdResponse(String(id)),
+    queryFn: () => apiIdResponse(String(id)),
   });
   const { data, isLoading } = apiIdData;
   const indivisualData: ApidataType = data;
@@ -47,14 +47,14 @@ function Indivisual() {
           </div>
           <div className="">{indivisualData.category}</div>
           <div className="font-medium text-2xl">
-            Discount Price:
+            Discount Price: $
             {(
               indivisualData.price -
               (indivisualData.discountPercentage * indivisualData.price) / 100
-            ).toFixed()}
+            ).toFixed(2)}
           </div>
           <div className="line-through text-red-400">
-            Price:{indivisualData.price}
+            Price:${indivisualData.price}
           </div>
           <div>Brand: {indivisualData.brand}</div>
 

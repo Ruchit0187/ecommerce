@@ -11,6 +11,7 @@ function Cart() {
     return <EmptyCart />;
   } else {
     return (
+      
       <div className="w-full flex p-4">
         <div className="w-2/4 flex flex-col">
           <ul className=" flex flex-col gap-2">

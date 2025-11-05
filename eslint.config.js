@@ -21,3 +21,5 @@ export default defineConfig([
     },
   },
 ])
+
+// https://dummyjson.com/products/search?q=&limit=10&skip=0

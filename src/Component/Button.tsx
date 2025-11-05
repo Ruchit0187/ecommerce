@@ -6,16 +6,16 @@ function Button(props: any) {
   const storeData: QuantityApidata[] = useSelector((state: any) => state.task);
   const dispatch = useDispatch();
   const propsvalue: QuantityApidata = props.value;
-    const item = storeData.find((curr) => curr.id === propsvalue.id);
+  const item = storeData.find((curr) => curr.id === propsvalue.id);
 
   if (item) {
     return (
       <div className=" flex justify-center gap-2">
         <button
-          onClick={() => dispatch(addTocart(propsvalue))}
-          className="bg-black text-white p-2 rounded-xl mb-2 cursor-pointer "
+          onClick={() => dispatch(removeQuantity(item))}
+          className="bg-black text-white p-2 rounded-2xl mb-2 cursor-pointer"
         >
-          +
+          -
         </button>
         <div className="text-black p-2">
           {storeData.map((curr: QuantityApidata) =>
@@ -23,10 +23,10 @@ function Button(props: any) {
           )}
         </div>
         <button
-          onClick={() => dispatch(removeQuantity(item))}
-          className="bg-black text-white p-2 rounded-2xl mb-2 cursor-pointer"
+          onClick={() => dispatch(addTocart(propsvalue))}
+          className="bg-black text-white p-2 rounded-xl mb-2 cursor-pointer "
         >
-          -
+          +
         </button>
       </div>
     );

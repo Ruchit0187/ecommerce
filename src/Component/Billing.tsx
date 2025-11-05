@@ -10,13 +10,13 @@ function Billing() {
         (next.price - (next.discountPercentage * next.price) / 100),
     0
   );
-  const totalProductPrice: number = Number(totalAmount.toFixed(2));
-  const totalTex: number = dataItem.reduce(
+  const totalProductPrice = Number(totalAmount.toFixed(2));
+  const totalTex = dataItem.reduce(
     (prev, next) => next.price * 0.18 * next.quantity + prev,
-  0
+    0
   );
-  const shippingCost: number = dataItem.length * 50;
-  let totalPayableAmount:number = 0;
+  const shippingCost = dataItem.length * 50;
+  let totalPayableAmount = 0;
   if (totalProductPrice + totalTex > 100) {
     totalPayableAmount = totalProductPrice + totalTex;
   } else {
@@ -33,7 +33,11 @@ function Billing() {
             </li>
           ))}
           <p className="border-t-2 mt-2 pt-2">Tex:</p>
-          <p className={`${totalPayableAmount >= 100 ? "line-through" : ""}`}>
+          <p
+            className={`${
+              totalProductPrice + totalTex >= 100 ? "line-through" : ""
+            }`}
+          >
             Shipping Cost
           </p>
           <p className="text-2xl font-bold">Total Price:</p>
@@ -49,9 +53,13 @@ function Billing() {
                 curr.quantity
               ).toFixed(2)}
             </li>
-          ))}
+          ))} 
           <p className="mt-2 pt-2">{totalTex.toFixed(2)}</p>
-          <p className={`${totalPayableAmount >= 100 ? "line-through" : ""}`}>
+          <p
+            className={`${
+              totalProductPrice + totalTex >= 100 ? "line-through" : ""
+            }`}
+          >
             {shippingCost}
           </p>
           <p className="text-2xl font-bold">{totalPayableAmount.toFixed(2)}</p>

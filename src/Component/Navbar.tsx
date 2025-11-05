@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { GrCart } from "react-icons/gr";
 import { useSelector } from "react-redux";
 function Navbar() {
-  const cartItem=useSelector((state:any)=>state.task);
+  const storeData=useSelector((state:any)=>state);
   return (
     <div className="sticky top-0 w-full h-20 shadow-lg flex items-center z-10 bg-blue-300 ">
       <div className="flex justify-between px-3 py-2 w-full items-center text-xl">
@@ -50,7 +50,7 @@ function Navbar() {
             }
           >
             <GrCart />
-            <p>{cartItem.length}</p>
+            { storeData.totalQuantity > 0 && <p>{storeData.totalQuantity}</p>}
           </NavLink>
         </div>
       </div>

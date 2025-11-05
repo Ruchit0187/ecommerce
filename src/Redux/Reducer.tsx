@@ -3,10 +3,12 @@ import type { QuantityApidata } from "../Types/Types";
 
 interface storeType {
   task: QuantityApidata[];
+  totalQuantity: number;
 }
 
 const initialState: storeType = {
   task: [],
+  totalQuantity: 0,
 };
 
 const Cartreducer = createSlice({
@@ -20,8 +22,13 @@ const Cartreducer = createSlice({
       } else {
         state.task.push({ ...action.payload, quantity: 1 });
       }
+      state.totalQuantity++;
     },
     removeToCart(state, action: PayloadAction<number>) {
+      const item = state.task.find((curr) => curr.id == action.payload);
+      if (item) {
+        state.totalQuantity = state.totalQuantity - item.quantity;
+      }
       state.task = state.task.filter((curr) => curr.id !== action.payload);
     },
     removeQuantity(state, action: PayloadAction<QuantityApidata>) {
@@ -35,9 +42,11 @@ const Cartreducer = createSlice({
           );
         }
       }
+      state.totalQuantity--;
     },
     clearToCart(state) {
       state.task = [];
+      state.totalQuantity = 0;
     },
   },
 });

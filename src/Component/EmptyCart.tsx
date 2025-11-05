@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Search from "./Search";
+
 
 function EmptyCart() {
   const nevigate = useNavigate();
   
   return (
     <>
-    <Search/>
     <div className=" w-full mt-10 ">
       <div className=" sm:w-full md:w-2/3 lg:w-1/3 mx-auto shadow-2xl p-2.5 rounded-2xl">
         <div>

@@ -47,4 +47,5 @@ export interface ApidataType {
 }
 export interface QuantityApidata extends ApidataType{
   quantity:number
+  totalQuantity: number
 }
