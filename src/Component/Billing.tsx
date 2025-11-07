@@ -23,7 +23,7 @@ function Billing() {
     totalPayableAmount = totalProductPrice + totalTex + shippingCost;
   }
   return (
-    <div className="flex w-12/14 bg-amber-200 rounded-2xl mr-2.5 px-5 justify-between gap-2 mt-2 py-2">
+    <div className="flex max-sm-flex-col: w-12/14  bg-amber-200 rounded-2xl mr-2.5 px-5 justify-between gap-2 mt-2 py-2">
       <div className="">
         <h1 className="font-semibold">Products</h1>
         <ul className="flex flex-col gap-2">
@@ -53,7 +53,7 @@ function Billing() {
                 curr.quantity
               ).toFixed(2)}
             </li>
-          ))} 
+          ))}
           <p className="mt-2 pt-2">{totalTex.toFixed(2)}</p>
           <p
             className={`${
@@ -62,7 +62,7 @@ function Billing() {
           >
             {shippingCost}
           </p>
-          <p className="text-2xl font-bold">{totalPayableAmount.toFixed(2)}</p>
+          <p className="text-2xl font-bold">${totalPayableAmount.toFixed(2)}</p>
         </ul>
       </div>
     </div>

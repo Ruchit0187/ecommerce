@@ -25,7 +25,7 @@ function Form() {
             id="name"
             className="mt-2 block  w-full ml-2 border-2 border-black text-black py-1 px-3 rounded-2xl"
             {...register("name", {
-              pattern: /^[a-zA-Z]+$/,
+              pattern: /^\s*[a-zA-Z]/,
               required: true,
               min: 2,
             })}
@@ -57,7 +57,7 @@ function Form() {
           <input
             id="description"
             className="mt-2 block  w-full ml-2 border-2 border-black text-black py-1 px-3 rounded-2xl"
-            {...register("description", { required: true })}
+            {...register("description", { required: true,min:5 })}
           />
           {errors.description && (
             <p className="text-red-500 text-end">Enter the Text</p>

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import EmptyCart from "./EmptyCart";
 import type { QuantityApidata } from "../Types/Types";
 import Button from "./Button";
@@ -11,9 +11,8 @@ function Cart() {
     return <EmptyCart />;
   } else {
     return (
-      
-      <div className="w-full flex p-4">
-        <div className="w-2/4 flex flex-col">
+      <div className="w-full flex p-4 ">
+        <div className="w-2/4 flex flex-col max-[500px]:w-full max-[500px]:mx-full">
           <ul className=" flex flex-col gap-2">
             {dataItem.map((curr, index) => (
               <li key={index} className="w-full felx gap-2">
@@ -37,7 +36,7 @@ function Cart() {
                           (curr.discountPercentage * curr.price) / 100
                         ).toFixed(2)}
                       </p>
-                      <p>
+                      <p className="text-black">
                         Total Price:
                         {(
                           (curr.price -
@@ -56,7 +55,7 @@ function Cart() {
             ))}
           </ul>
         </div>
-        <div className="w-2/4 fixed right-0">
+        <div className="w-2/4 fixed right-0 max-[500px]:w-full">
           <Billing />
         </div>
       </div>

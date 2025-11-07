@@ -7,9 +7,9 @@ import Stack from "@mui/material/Stack";
 import { useDebounceCallback } from "usehooks-ts";
 
 function Shopping() {
-  const [pageNumber, setPageNumber] = useState<number>(0);
-  const [searchData, setSearchData] = useState<string>("");
-  const [order, setOrder] = useState<string>("");
+  const [pageNumber, setPageNumber] = useState(0);
+  const [searchData, setSearchData] = useState("");
+  const [order, setOrder] = useState("");
   const [sortField, setSortField] = useState("");
   function handlePageChange(e: React.ChangeEvent<unknown>, page: number) {
     if (page === 1) {

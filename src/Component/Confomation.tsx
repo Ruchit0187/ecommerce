@@ -13,7 +13,7 @@ function Confomation(props: any) {
     setOpen(true);
   };
   const handleClose = (e: any) => {
-    if (e.target.innerText === "Agree") {
+    if (e.target.innerText === "Yes") {
       dispatch(removeToCart(id));
     }
     setOpen(false);
@@ -30,24 +30,24 @@ function Confomation(props: any) {
       <Dialog
         open={open}
         onClose={handleClose}
+        fullWidth={true}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        className="w-full h-full"
       >
         <DialogTitle id="alert-dialog-title" className="w-full">
-          Do you Really Remove?
+          Do You Really Remove?
         </DialogTitle>
-        <DialogActions>
+        <DialogActions className="mt-20 flex gap-3">
           <button
             onClick={handleClose}
-            className="text-black p-2 cursor-pointer"
+            className="text-white p-2 px- cursor-pointer border-2 rounded bg-black "
           >
             No
           </button>
           <button
             onClick={handleClose}
             autoFocus
-            className="text-red-500 p-2 cursor-pointer"
+            className="text-red-500 p-2 cursor-pointer border-2 rounded"
           >
             Yes
           </button>

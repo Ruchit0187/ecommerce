@@ -2,29 +2,43 @@ import type { QuantityApidata } from "../Types/Types";
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import Skeleton from "react-loading-skeleton";
-
+import EmptySearchData from "./EmptySearchData";
+import {  useState } from "react";
 function Card(props: any) {
   const { data, isLoading } = props;
-  const DataProducts: QuantityApidata[] = data?.products;
+  const [loaded, setLoaded] = useState(false);
+  const dataProducts: QuantityApidata[] = data?.products;
   if (isLoading) {
-    return <Skeleton count={5} className="bg-amber-400 w-1/3 h-1/5" />;
-  } else if (DataProducts.length === 0) {
-    return <div>123</div>;
-  } else {
     return (
-      <div className="w-full mt-2.5  px-3">
-        <ul className=" grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 py-3.5 ">
-          {DataProducts?.map((i) => (
-            <div key={i.id} className="shadow-2xl rounded-2xl hover:shadow-2xl">
+      <div className="w-screen flex justify-center items-center">
+        <div className="w-12 h-12 mt-70 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+  return (
+    <div className="w-full mt-2.5 px-3">
+      {dataProducts.length === 0 ? (
+        <div>
+          <EmptySearchData />
+        </div>
+      ) : (
+        <ul className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 py-3.5 ">
+          {dataProducts?.map((i) => (
+            <div
+              key={i.id}
+              className="shadow-2xl flex flex-col rounded-2xl hover:shadow-2xl"
+            >
               <NavLink to={`/shopping/${i.id}`} className="w-full">
                 <li className="p-3">
                   <div className="mx-auto max-w-md overflow-hidden rounded-xl bg-white  md:max-w-2xl">
-                    <div className="md:flex">
-                      <div className="md:shrink-0">
+                    <div className="flex flex-col">
+                      <div className="md:shrink-0 mx-auto">
+                        {!loaded && <Skeleton height={200} width={200} />}
                         <img
-                          className="h-48 w-full object-contain md:h-full md:w-48"
+                          className="h-48 w-full object-cover md:h-full md:w-48"
                           src={i.images[0]}
                           alt={i.category}
+                          onLoad={() => setLoaded(true)}
                         />
                       </div>
                       <div className="p-8">
@@ -48,13 +62,15 @@ function Card(props: any) {
                   </div>
                 </li>
               </NavLink>
-              <Button value={i} />
+              <div className="align-bottom mt-auto">
+                <Button value={i} />
+              </div>
             </div>
           ))}
         </ul>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
 
 export default Card;

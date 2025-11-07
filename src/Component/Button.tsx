@@ -10,7 +10,7 @@ function Button(props: any) {
 
   if (item) {
     return (
-      <div className=" flex justify-center gap-2">
+      <div className="flex justify-center gap-2">
         <button
           onClick={() => dispatch(removeQuantity(item))}
           className="bg-black text-white p-2 rounded-2xl mb-2 cursor-pointer"
