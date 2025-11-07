@@ -5,9 +5,10 @@ import Button from "./Button";
 import Billing from "./Billing";
 import Confomation from "./Confomation";
 
+
 function Cart() {
-  const dataItem: QuantityApidata[] = useSelector((state: any) => state.task);
-  if (dataItem.length === 0) {
+  const dataItem: QuantityApidata[] = useSelector((state:any) => state.task);
+  if (!dataItem.length) {
     return <EmptyCart />;
   } else {
     return (

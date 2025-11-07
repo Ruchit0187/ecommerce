@@ -11,7 +11,7 @@ import Button from "./Button";
 function Indivisual() {
   const id = useParams().id;
   const nevigate = useNavigate();
-  const [loaded, setLoaded] = useState(false);
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
   const apiIdData = useQuery({
     queryKey: ["indivisual", id],
     queryFn: () => apiIdResponse(String(id)),
@@ -28,12 +28,17 @@ function Indivisual() {
   return (
     <div className="shadow-sm p-5 bg-blue-100 flex flex-row  max-[600px]:flex-col max-[600px]:gap-2  mx-3 rounded-3xl mt-2.5  justify-between gap-3.5 ">
       <div className="image w-1/3 h-fit max-[600px]:w-full max-[600px]:mx-full">
-        {!loaded && <Skeleton height={500} width={500} />}
+        {imageLoading && (
+          <div className="mx-auto my-auto max-w-fit">
+            <Skeleton height={486} width={486} />
+          </div>
+        )}
         <img
+          style={{display:`${imageLoading?"none":"block"}`}}
           src={indivisualData?.images[0]}
           alt={indivisualData?.category}
           className="w-max h-auto object-contain"
-          onLoad={() => setLoaded(true)}
+          onLoad={() => setImageLoading(false)}
         />
       </div>
       <div className="design flex flex-col gap-2">

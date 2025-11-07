@@ -7,11 +7,11 @@ export const apiResponse = async (
   skipvalue: number,
   search?: string,
   order?: string,
-  sortField?: string
+  sortField?: string,
 ) => {
   try {
     const response = await api.get(
-      `/search?q=${search}&sortBy=${sortField}&order=${order}&limit=${10}&skip=${skipvalue}`
+      `/search?q=${search}&sortBy=${sortField}&limit=${10}&order=${order}&skip=${skipvalue}`
     );
     if (response.status === 200) {
       return response.data;

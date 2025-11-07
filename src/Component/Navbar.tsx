@@ -21,7 +21,7 @@ function Navbar() {
                 to="/shopping"
                 className={({ isActive }) => (isActive ? "underline" : "")}
               >
-                shopping
+                Shopping
               </NavLink>
             </li>
             <li>
@@ -29,7 +29,7 @@ function Navbar() {
                 to="/form"
                 className={({ isActive }) => (isActive ? "underline" : "")}
               >
-                form
+                Form
               </NavLink>
             </li>
           </ul>
