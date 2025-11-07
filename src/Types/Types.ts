@@ -49,3 +49,16 @@ export interface QuantityApidata extends ApidataType{
   quantity:number
   totalQuantity: number
 }
+export interface ApiFetchDataType{
+  limit:number
+  products:QuantityApidata[]
+  skip:number
+  total:number
+}
+export interface ReviewType {
+  rating: number;
+  comment: string;
+  date: string;
+  reviewerName: string;
+  reviewerEmail: string;
+}

@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { Activity, Suspense, useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiIdResponse } from "../Axios/Axios";
-import type { ApidataType } from "../Types/Types";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Reviews from "./Reviews";
@@ -15,6 +14,7 @@ function Indivisual() {
   const apiIdData = useQuery({
     queryKey: ["indivisual", id],
     queryFn: () => apiIdResponse(String(id)),
+    gcTime: 300000,
   });
   const { data: indivisualData, isLoading } = apiIdData;
   if (isLoading) {
@@ -24,7 +24,6 @@ function Indivisual() {
       </div>
     );
   }
-  // const indivisualData: ApidataType = data;
   return (
     <div className="shadow-sm p-5 bg-blue-100 flex flex-row  max-[600px]:flex-col max-[600px]:gap-2  mx-3 rounded-3xl mt-2.5  justify-between gap-3.5 ">
       <div className="image w-1/3 h-fit max-[600px]:w-full max-[600px]:mx-full">
@@ -34,7 +33,7 @@ function Indivisual() {
           </div>
         )}
         <img
-          style={{display:`${imageLoading?"none":"block"}`}}
+          style={{ display: `${imageLoading ? "none" : "block"}` }}
           src={indivisualData?.images[0]}
           alt={indivisualData?.category}
           className="w-max h-auto object-contain"

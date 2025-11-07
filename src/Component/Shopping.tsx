@@ -6,6 +6,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useDebounceCallback } from "usehooks-ts";
 
+
 const INITAL_PAGE_NO = 1;
 
 function Shopping() {
@@ -31,18 +32,17 @@ function Shopping() {
     scrollToTop();
   }
   function handleSelectChange(value: string) {
+    setOrder(value);
     if (value === "") {
-      setOrder(value);
       setSortField("");
     } else {
-      setOrder(value);
       setSortField("price");
     }
     resetPage();
     setPageNumber(0);
   }
   const debounce = useDebounceCallback(setSearchData, 1000);
-  const { data, isLoading, isError } = useQuery({
+  const { data , isLoading } = useQuery({
     queryKey: ["shopping", pageNumber, searchData, order],
     queryFn: () => apiResponse(pageNumber, searchData, order, sortField),
     gcTime: 300000,
@@ -73,7 +73,7 @@ function Shopping() {
           }}
         />
       </div>
-      <Card data={data} isLoading={isLoading} isError={isError} />
+      <Card data={data} isLoading={isLoading}/>
       <div className=" mx-auto py-1 flex flex-col flex-wrap items-center mb-2">
         <Stack spacing={2}>
           <Pagination

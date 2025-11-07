@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
 import type { QuantityApidata } from "../Types/Types";
+import type { RootState } from "../Redux/Store";
 
 function Billing() {
-  const dataItem: QuantityApidata[] = useSelector((state: any) => state.task);
+  const dataItem: QuantityApidata[] = useSelector(
+    (state: RootState) => state.task
+  );
   const totalAmount = dataItem.reduce(
     (prev, next) =>
       prev +

@@ -4,10 +4,11 @@ import type { QuantityApidata } from "../Types/Types";
 import Button from "./Button";
 import Billing from "./Billing";
 import Confomation from "./Confomation";
+import { type RootState } from "../Redux/Store";
 
 
 function Cart() {
-  const dataItem: QuantityApidata[] = useSelector((state:any) => state.task);
+  const dataItem: QuantityApidata[] = useSelector((state:RootState) => state.task);
   if (!dataItem.length) {
     return <EmptyCart />;
   } else {

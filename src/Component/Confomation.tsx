@@ -5,15 +5,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { removeToCart } from "../Redux/Reducer";
 
-function Confomation(props: any) {
+function Confomation(props: { id: number }) {
   const { id } = props;
   const [open, setOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
   };
-  const handleClose = (e: any) => {
-    if (e.target.innerText === "Yes") {
+  const handleClose = (value?:string) => {
+    if (value === "Yes") {
       dispatch(removeToCart(id));
     }
     setOpen(false);
@@ -29,7 +29,7 @@ function Confomation(props: any) {
       </button>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={()=>handleClose()}
         fullWidth={true}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -39,13 +39,13 @@ function Confomation(props: any) {
         </DialogTitle>
         <DialogActions className="mt-20 flex gap-3">
           <button
-            onClick={handleClose}
+            onClick={()=>handleClose("No")}
             className="text-white p-2 px- cursor-pointer border-2 rounded bg-black "
           >
             No
           </button>
           <button
-            onClick={handleClose}
+            onClick={()=>handleClose("Yes")}
             autoFocus
             className="text-red-500 p-2 cursor-pointer border-2 rounded"
           >

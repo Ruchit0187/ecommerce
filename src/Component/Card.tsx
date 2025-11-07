@@ -1,15 +1,17 @@
-import type { QuantityApidata } from "../Types/Types";
+import type { QuantityApidata,ApiFetchDataType } from "../Types/Types";
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import Skeleton from "react-loading-skeleton";
 import EmptySearchData from "./EmptySearchData";
 import { useEffect, useState } from "react";
-function Card(props: any) {
+
+
+function Card(props: { data: ApiFetchDataType; isLoading: boolean; }) {
   const { data, isLoading } = props;
   const [imageLoading, setImageLoading] = useState<boolean>(true);
-  useEffect(()=>{
-    setImageLoading(true)
-  },[data])
+  useEffect(() => {
+    setImageLoading(true);
+  }, [data]);
   const dataProducts: QuantityApidata[] = data?.products;
   if (isLoading) {
     return (
@@ -20,7 +22,7 @@ function Card(props: any) {
   }
   return (
     <div className="w-full mt-2.5 px-3">
-      {dataProducts.length === 0 ? (
+      {!dataProducts.length ? (
         <div>
           <EmptySearchData />
         </div>
@@ -42,7 +44,9 @@ function Card(props: any) {
                           </div>
                         )}
                         <img
-                          style={{display:`${imageLoading?"none":"block"}`}}
+                          style={{
+                            display: `${imageLoading ? "none" : "block"}`,
+                          }}
                           className="h-48 w-full object-cover md:h-full md:w-48"
                           src={i?.images[0]}
                           alt={i?.category}

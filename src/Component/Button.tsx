@@ -1,13 +1,15 @@
 import type { QuantityApidata } from "../Types/Types";
 import { useDispatch, useSelector } from "react-redux";
 import { addTocart, removeQuantity } from "../Redux/Reducer";
+import type { RootState, AppDispatch } from "../Redux/Store";
 
-function Button(props: any) {
-  const storeData: QuantityApidata[] = useSelector((state: any) => state.task);
-  const dispatch = useDispatch();
+function Button(props: { value: QuantityApidata }) {
+  const storeData: QuantityApidata[] = useSelector(
+    (state: RootState) => state.task
+  );
+  const dispatch: AppDispatch = useDispatch();
   const propsvalue: QuantityApidata = props.value;
   const item = storeData.find((curr) => curr.id === propsvalue.id);
-
   if (item) {
     return (
       <div className="flex justify-center gap-2">

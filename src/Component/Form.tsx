@@ -2,8 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import type { InputForm } from "../Types/Types";
 
 function Form() {
-  const onsubmit: SubmitHandler<InputForm> = (data) => {
-    console.log(data);
+  const onsubmit: SubmitHandler<InputForm> = () => {
     reset();
   };
 
@@ -11,7 +10,7 @@ function Form() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isLoading, isSubmitting },
+    formState: { errors },
   } = useForm<InputForm>();
   return (
     <div className=" sm:w-10/12 md:w-2/5 lg:w-1/4 mx-auto mt-10 shadow-lg rounded-3xl">
